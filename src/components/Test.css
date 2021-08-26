@@ -6,7 +6,3 @@
     height:30px;
     margin-bottom: 5px;
 }
-.inputedList:checked{
-    height:50px;
-    border:#f00;
-}

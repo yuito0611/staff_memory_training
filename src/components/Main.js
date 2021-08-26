@@ -2,25 +2,34 @@ import React from 'react'
 import './Main.css'
 import Table from './Table.js'
 import Test from './Test.js'
+import Answer from './Answer.js'
 
 export default class Main extends React.Component {
     constructor(props){
         super(props);
-        this.state = {isStarted: false, reservationList:makeGuestList()};
+        this.state = {phase:0, reservationList:makeGuestList(), inputedList:null,};
+        this.getInputedList = this.getInputedList.bind(this);
     }
 
-    handleStartClick=()=>{
-        this.setState({isStarted: !this.state.isStarted});
+
+    movephase=(phase_num)=>{
+        this.setState({phase:phase_num});
     }
+    getInputedList(list){
+        this.setState({inputedList:list});
+    }
+
+
 
     render() {
-        const isStarted = this.state.isStarted;
+        let phase = this.state.phase;
         let contents;
-
-        if(isStarted){
-            contents = <div><Test reservationList={this.state.reservationList} onClick={()=>this.handleStartClick()}/></div>;
-        } else {
-            contents = <div><Table reservationList={this.state.reservationList} onClick={()=>this.handleStartClick()}/></div>
+        if(phase===0){   // 問題フェーズ
+            contents = <div><Table reservationList={this.state.reservationList} movephase={()=>this.movephase(1)}/></div>
+        } else if(phase===1){    //解答フェーズ
+            contents = <div><Test reservationList={this.state.reservationList} movephase={()=>this.movephase(2)} getInputedList={(list)=>this.getInputedList(list)}/></div>;
+        } else if(phase===2){    //答え合わせ
+            contents = <div><Answer answerList={this.state.reservationList} inputedList={this.state.inputedList} movephase={()=>this.movephase(0)}/></div>;
         }
 
         return (<div>{contents}</div>);
@@ -61,7 +70,7 @@ function makeGuestList(){
         }else{
             ninzu = ninzu_arr[Math.floor(Math.random()*ninzu_arr.length)]
         }
-        list[i] = {"id":i+1,"time":time_arr[index[i]],"table":"T"+table[i],"ninzu":ninzu+"名"}; 
+        list[i] = {"id":i+1,"time":time_arr[index[i]],"table":table[i],"ninzu":ninzu}; 
     }
     return list;
 }

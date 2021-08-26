@@ -1,22 +1,22 @@
-table{
+.answer-table{
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
   }
   
-  table tr{
-    border-bottom: solid 1px #eee;
-    cursor: pointer;
-  }
-    
-  table th,table td{
-    text-align: center;
-    width: 10%;
-    padding: 5px;
-  }
-  table tr:nth-child(even){
-    background-color: #eee
-  }
+  .answer-table tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+  
+.answer-table th,table td{
+  text-align: center;
+  width: 10%;
+  padding: 5px;
+}
+.answer-table tr:nth-child(even){
+  background-color: #eee
+}
 
 
   

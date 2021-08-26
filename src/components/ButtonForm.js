@@ -24,7 +24,15 @@ export default class ButtonForm extends React.Component {
         return <>
             <Card>
                 <Card.Body>
-                    <ButtonToolbar aria-label="TableGroup">
+                    <ButtonToolbar aria-label="Time Group">
+                        <ButtonGroup className="me-2" aria-label="First group">
+                            <Button variant="secondary" data-type="time" data-id="11:00" onClick={(e)=>this.updateParams(e)}>11:00</Button>
+                            <Button variant="secondary" data-type="time" data-id="11:30" onClick={(e)=>this.updateParams(e)}>11:30</Button>
+                            <Button variant="secondary" data-type="time" data-id="12:00" onClick={(e)=>this.updateParams(e)}>12:00</Button>
+                            <Button variant="secondary" data-type="time" data-id="13:00" onClick={(e)=>this.updateParams(e)}>13:00</Button>
+                        </ButtonGroup>
+                    </ButtonToolbar><br/> 
+                    <ButtonToolbar aria-label="Table Group">
                         <ButtonGroup className="me-2" aria-label="First group">
                             <Button variant="outline-primary" data-type="table" data-id="1" onClick={(e)=>this.updateParams(e)}>1</Button>
                             <Button variant="outline-primary" data-type="table" data-id="3" onClick={(e)=>this.updateParams(e)}>3</Button>
@@ -47,7 +55,7 @@ export default class ButtonForm extends React.Component {
                             <Button variant="outline-primary" data-type="table" data-id="30" onClick={(e)=>this.updateParams(e)}>30</Button>
                         </ButtonGroup>
                     </ButtonToolbar><br/>
-                    <ButtonToolbar aria-label="NumberOfGuestGroup">
+                    <ButtonToolbar aria-label="Number of Guest Group">
                         <ButtonGroup className="me-2" aria-label="First group">
                             <Button variant="outline-success" data-type="guest" data-id="1" onClick={(e)=>this.updateParams(e)}>1</Button>
                             <Button variant="outline-success" data-type="guest" data-id="2" onClick={(e)=>this.updateParams(e)}>2</Button>
@@ -55,17 +63,9 @@ export default class ButtonForm extends React.Component {
                             <Button variant="outline-success" data-type="guest" data-id="4" onClick={(e)=>this.updateParams(e)}>4</Button>
                             <Button variant="outline-success" data-type="guest" data-id="5" onClick={(e)=>this.updateParams(e)}>5</Button>
                             <Button variant="outline-success" data-type="guest" data-id="6" onClick={(e)=>this.updateParams(e)}>6</Button>
-
                         </ButtonGroup>
                     </ButtonToolbar><br/>
-                    <ButtonToolbar aria-label="Toolbar with button groups">
-                        <ButtonGroup className="me-2" aria-label="First group">
-                            <Button variant="secondary" data-type="time" data-id="11:00" onClick={(e)=>this.updateParams(e)}>11:00</Button>
-                            <Button variant="secondary" data-type="time" data-id="11:30" onClick={(e)=>this.updateParams(e)}>11:30</Button>
-                            <Button variant="secondary" data-type="time" data-id="12:00" onClick={(e)=>this.updateParams(e)}>12:00</Button>
-                            <Button variant="secondary" data-type="time" data-id="13:00" onClick={(e)=>this.updateParams(e)}>13:00</Button>
-                        </ButtonGroup>
-                    </ButtonToolbar><br/> 
+
                 </Card.Body>
             </Card>
             </>;

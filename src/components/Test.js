@@ -65,7 +65,6 @@ export default class Test extends React.Component {
 
 
     selectButton=(index)=>{
-        // this.setState({selectedIndex:index},()=>{console.log(this.state.selectedIndex)});
         this.setState(()=>({selectedIndex:index}));
 
     }
@@ -75,15 +74,19 @@ export default class Test extends React.Component {
         const list = this.state.inputedList.slice();
 
         if(type==="table"){
-            list[i].table=id;
+            list[i].table=Number(id);
         } else if(type==="guest"){
-            list[i].ninzu=id;
+            list[i].ninzu=Number(id);
         } else if(type==="time"){
             list[i].time=id;
         }
         this.setState({inputedList:list});
     }
 
+    onClick=()=>{
+        this.props.getInputedList(this.state.inputedList);
+        this.props.movephase();
+    }
 
     render(){
         return  <> 
@@ -93,7 +96,7 @@ export default class Test extends React.Component {
                     <Row>
                         <Col></Col><Col><ButtonForm updateParams={this.updateParams}/></Col><Col></Col>
                     </Row>
-                    <Button variant="success" className="checkbutton" onClick={console.log('check',this.state.inputedList)} >CHECK!</Button>
+                    <Button variant="success" className="checkbutton" onClick={this.onClick} >CHECK!</Button>
                 </>
     }
 }

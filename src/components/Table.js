@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class Table extends React.Component {
     constructor(props){
@@ -6,6 +8,7 @@ export default class Table extends React.Component {
         this.state = {reservationList:this.props.reservationList};
 
         this.makeTable = this.makeTable.bind(this);
+        
     }
     // 予約リストからテーブルを作成
     makeTable=(reservationList)=>{
@@ -18,16 +21,16 @@ export default class Table extends React.Component {
         for(let i=0;i<Object.keys(reservationList).length;i++){
             body.push(  <tr key={i} >
                             <td>{reservationList[i].time}</td>
-                            <td>{reservationList[i].table}</td>
-                            <td>{reservationList[i].ninzu}</td>
+                            <td>T{reservationList[i].table}</td>
+                            <td>{reservationList[i].ninzu}名</td>
                         </tr>)
         }
-        return <table><thead>{header}</thead><tbody>{body}</tbody></table>;
+        return <table className='answer-table'><thead>{header}</thead><tbody>{body}</tbody></table>;
     };
 
     render(){
         const table = this.makeTable(this.state.reservationList);
-        return <div>{table}<button onClick={this.props.onClick}>START</button></div>
+        return <div>{table}<Button variant="success"  onClick={this.props.movephase}>START</Button></div>
     };
 }
 
