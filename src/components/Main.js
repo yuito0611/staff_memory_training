@@ -1,44 +1,16 @@
 import React from 'react'
 import './Main.css'
-
-export class Table extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {reservation_list:makeGuestList()};
-        this.makeTable = this.makeTable.bind(this);
-    }
-    // 予約リストからテーブルを作成
-    makeTable=(reservation_list)=>{
-        let table = <br />;
-        var body = [];
-        const header =  <tr><th>時間</th>
-                            <th>テーブル</th>
-                            <th>人数</th></tr>
-
-        for(let i=0;i<Object.keys(reservation_list).length;i++){
-            body.push(  <tr key={i}>
-                            <td>{reservation_list[i].time}</td>
-                            <td>{reservation_list[i].table}</td>
-                            <td>{reservation_list[i].ninzu}</td>
-                        </tr>)
-        }
-        table = <table><thead>{header}</thead><tbody>{body}</tbody></table>
-        return table;
-    };
-
-    render(){
-        return this.makeTable(this.state.reservation_list);
-    }
-}
+import Table from './Table.js'
+import Test from './Test.js'
 
 export default class Main extends React.Component {
     constructor(props){
         super(props);
-        this.state = {isStarted: false};
+        this.state = {isStarted: false, reservationList:makeGuestList()};
     }
 
     handleStartClick=()=>{
-        this.setState({isStarted: true});
+        this.setState({isStarted: !this.state.isStarted});
     }
 
     render() {
@@ -46,15 +18,14 @@ export default class Main extends React.Component {
         let contents;
 
         if(isStarted){
-            contents = <div><Table /><button onClick={makeGuestList}>START</button></div>
+            contents = <div><Test reservationList={this.state.reservationList} onClick={()=>this.handleStartClick()}/></div>;
         } else {
-            contents = <button className="startbutton" onClick={this.handleStartClick} ><p>button</p></button>;
+            contents = <div><Table reservationList={this.state.reservationList} onClick={()=>this.handleStartClick()}/></div>
         }
 
         return (<div>{contents}</div>);
     }
 }
-
 
 function arrayShaffle(array){
     for(var i = array.length - 1; 0<i; i--){
@@ -77,17 +48,21 @@ function makeIndex(time_arr,len){
 }
 
 function makeGuestList(){
-    const table_arr = ["1","2","3","4","5","6","11","12","13","14","15","16","21","22","25","26","27","30"];
+    const table_arr = [1,3,5,11,12,13,14,15,16,21,22,25,26,27,30];
     const time_arr = ["11:00","11:30","12:00","13:00"]; 
     const ninzu_arr = [1,2,3,4,5,6];
     const list = {};
-
+    let ninzu = 0;
     const table = arrayShaffle(table_arr);
     const index = makeIndex(time_arr,table.length);
     for(let i=0; i<table.length; i++){
-        let ninzu = ninzu_arr[Math.floor(Math.random()*ninzu_arr.length)]
+        if(table[i]>=11 && table[i]<=16){
+            ninzu = ninzu_arr[Math.floor(Math.random()*3)]
+        }else{
+            ninzu = ninzu_arr[Math.floor(Math.random()*ninzu_arr.length)]
+        }
         list[i] = {"id":i+1,"time":time_arr[index[i]],"table":"T"+table[i],"ninzu":ninzu+"名"}; 
     }
-
     return list;
 }
+
