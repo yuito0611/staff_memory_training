@@ -90,12 +90,8 @@ export default class Test extends React.Component {
 
     render(){
         return  <> 
-                    <Row>
-                        <Col></Col><Col><InputedList inputedList={this.state.inputedList} selectButton={this.selectButton}></InputedList></Col><Col></Col>
-                    </Row>
-                    <Row>
-                        <Col></Col><Col><ButtonForm updateParams={this.updateParams}/></Col><Col></Col>
-                    </Row>
+                   <InputedList inputedList={this.state.inputedList} selectButton={this.selectButton}></InputedList>
+                    <ButtonForm updateParams={this.updateParams}/>
                     <Button variant="success" className="checkbutton" onClick={this.onClick} >CHECK!</Button>
                 </>
     }

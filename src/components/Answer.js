@@ -59,11 +59,7 @@ export default class InputedList extends React.Component {
 
     render(){
            return  <>
-                    <Row>
-                        <Col></Col>
-                        <Col>{this.checkTheAnswer()}</Col>
-                        <Col></Col>
-                    </ Row>
+                    {this.checkTheAnswer()}
                     <Button variant="success"  onClick={this.props.movephase} >Try Again!</Button>
                     </>
         }
